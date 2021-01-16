@@ -9,4 +9,8 @@ defmodule IsMyFriendCheatingTest do
   test "remov_nb(100)" do
     assert IsMyFriendCheating.remov_nb(100) == []
   end
+
+  test "remov_nb(1000003)" do
+    assert IsMyFriendCheating.remov_nb(1_000_003) == []
+  end
 end
