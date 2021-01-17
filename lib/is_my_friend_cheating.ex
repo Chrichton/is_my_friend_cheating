@@ -1,6 +1,7 @@
 defmodule IsMyFriendCheating do
   @moduledoc """
   Documentation for `IsMyFriendCheating`.
+  Codewars run-time: 2975ms
   """
 
   def remov_nb(n) do
