@@ -12,7 +12,9 @@ defmodule IsMyFriendCheating do
 
   def comb(n) do
     ceil = ceil(n / 2)
-    comb_recursive(ceil, ceil + 1, n / 2 * (n + 1), n, [])
+    sum = n / 2 * (n + 1)
+
+    comb_recursive(ceil, b_bound(ceil, sum, n), sum, n, [])
   end
 
   def comb_recursive(a, _b, _sum, n, acc) when a >= n,
@@ -22,9 +24,13 @@ defmodule IsMyFriendCheating do
     do: comb_recursive(a, b + 1, sum, n, [{a, b} | acc])
 
   def comb_recursive(a, b, sum, n, acc) when b > ceil((sum - 1 - a) / a) do
-    comb_recursive(a + 1, floor((sum - n - a) / a), sum, n, acc)
+    comb_recursive(a + 1, b_bound(a, sum, n), sum, n, acc)
   end
 
   def comb_recursive(a, b, sum, n, acc),
     do: comb_recursive(a, b + 1, sum, n, acc)
+
+  def b_bound(a, sum, n) do
+    floor((sum - n - a) / a)
+  end
 end
