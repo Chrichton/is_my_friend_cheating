@@ -6,6 +6,7 @@ defmodule IsMyFriendCheating do
   def remov_nb(n) do
     comb(n)
     |> Enum.flat_map(fn {a, b} -> [{a, b}, {b, a}] end)
+    |> Enum.sort_by(fn {a, _b} -> a end)
   end
 
   def comb(n) do
@@ -14,12 +15,12 @@ defmodule IsMyFriendCheating do
   end
 
   def comb_recursive(a, _b, _sum, n, acc) when a >= n,
-    do: Enum.reverse(acc)
+    do: acc
 
   def comb_recursive(a, b, sum, n, acc) when a * b + a + b == sum,
     do: comb_recursive(a, b + 1, sum, n, [{a, b} | acc])
 
-  def comb_recursive(a, b, sum, n, acc) when b > n,
+  def comb_recursive(a, b, sum, n, acc) when b > ceil((sum - 1 - a) / a),
     do: comb_recursive(a + 1, a + 2, sum, n, acc)
 
   def comb_recursive(a, b, sum, n, acc),
