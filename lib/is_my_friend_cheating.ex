@@ -6,6 +6,7 @@ defmodule IsMyFriendCheating do
   def remov_nb(n) do
     comb(n)
     |> Enum.flat_map(fn {a, b} -> [{a, b}, {b, a}] end)
+    |> Enum.uniq()
     |> Enum.sort_by(fn {a, _b} -> a end)
   end
 

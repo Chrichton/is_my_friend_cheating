@@ -10,9 +10,14 @@ defmodule IsMyFriendCheatingTest do
     assert IsMyFriendCheating.remov_nb(100) == []
   end
 
-  # test "remov_nb(1000003)" do
-  #   assert IsMyFriendCheating.remov_nb(1_000_003) == []
-  # end
+  test "remov_nb(1000003)" do
+    assert IsMyFriendCheating.remov_nb(1_000_003) == [
+             {550_320, 908_566},
+             {559_756, 893_250},
+             {893_250, 559_756},
+             {908_566, 550_320}
+           ]
+  end
 
   test "double" do
     assert IsMyFriendCheating.remov_nb(878) == [{601, 640}, {640, 601}]
