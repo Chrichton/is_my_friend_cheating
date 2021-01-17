@@ -20,8 +20,9 @@ defmodule IsMyFriendCheating do
   def comb_recursive(a, b, sum, n, acc) when a * b + a + b == sum,
     do: comb_recursive(a, b + 1, sum, n, [{a, b} | acc])
 
-  def comb_recursive(a, b, sum, n, acc) when b > ceil((sum - 1 - a) / a),
-    do: comb_recursive(a + 1, a + 2, sum, n, acc)
+  def comb_recursive(a, b, sum, n, acc) when b > ceil((sum - 1 - a) / a) do
+    comb_recursive(a + 1, floor((sum - n - a) / a), sum, n, acc)
+  end
 
   def comb_recursive(a, b, sum, n, acc),
     do: comb_recursive(a, b + 1, sum, n, acc)
